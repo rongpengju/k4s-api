@@ -13,25 +13,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Set up Go
+      - name: Setup Go
         uses: actions/setup-go@v1
         with:
           go-version: 1.18
 
       - name: Start install
-        script:
-          BIN="/usr/local/bin" && \
-          VERSION="1.8.0" && \
-          BINARY_NAME="buf" && \
-          curl -sSL \
-          "https://github.com/bufbuild/buf/releases/download/v${VERSION}/${BINARY_NAME}-$(uname -s)-$(uname -m)" \
-          -o "${BIN}/${BINARY_NAME}" && \
-          chmod +x "${BIN}/${BINARY_NAME}"
-#        run: |
-#          export PATH=$PATH:$(go env GOPATH)/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
-#          make install
+        uses: actions/checkout@v2
+        run: |
+          make install
 
       - name: cat version
+        uses: actions/checkout@v2
         run: |
           buf --version
 
