@@ -19,12 +19,10 @@ jobs:
           go-version: 1.19
 
       - name: Start install
-        run: |
-          make install
+        run: make install
 
       - name: cat version
-        run: |
-          buf --version
+        run: buf --version
 
 #      - name: cat version
 #        run: |
