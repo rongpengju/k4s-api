@@ -24,7 +24,7 @@ jobs:
       - name: Setup buf env
         run: |
           cp -r /home/runner/go/bin/ /usr/local/bin/
-          chmod +x /usr/local/bin/
+          chmod -R 777 /usr/local/bin/
 
 
       - name: cat env
