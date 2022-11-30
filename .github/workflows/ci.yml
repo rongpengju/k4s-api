@@ -9,7 +9,6 @@ jobs:
   install:
     name: install
     runs-on: ubuntu-latest
-    needs: set
     steps:
       - name: Set up Go
         uses: actions/setup-go@v1
