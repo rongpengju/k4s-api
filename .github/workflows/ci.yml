@@ -21,8 +21,10 @@ jobs:
       - name: Start install
         run: |
           make install
-          make build
-          make push-to-go-repo
+
+      - name: cat version
+        run: |
+          buf --version
 
 #      - name: cat version
 #        run: |
