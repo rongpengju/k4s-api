@@ -23,7 +23,7 @@ jobs:
 
       - name: Setup buf env
         run: |
-          export PATH=$PATH:/home/runner/go/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
+          export PATH=$PATH:$(go env GOPATH)/bin
 #          cd /home/runner/go/bin/
 #          ls
 #          mv /home/runner/go/bin/grpcurl /usr/local/bin/
@@ -36,11 +36,11 @@ jobs:
 #          chmod +x /usr/local/bin/protoc-gen-go
 #          chmod +x /usr/local/bin/protoc-gen-go-grpc
 #          chmod +x /usr/local/bin/buf
+
       - name: cat sys env
         run: |
           echo $PATH
           go env
-
 
       - name: cat env
         run: |
