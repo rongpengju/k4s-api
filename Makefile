@@ -10,6 +10,7 @@ build: clean lint generator
 
 .PHONY: install
 install:
+	$(GO) get -u github.com/golang/protobuf
 	$(GO) install github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
 	$(GO) install github.com/fullstorydev/grpcurl/cmd/grpcurl@$(GRPCURL_VERSION)
 	$(GO) install google.golang.org/protobuf/cmd/protoc-gen-go@$(PROTOC_GEN_GO)
