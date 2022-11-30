@@ -24,8 +24,8 @@ jobs:
       - name: cat go env
         run: go env
 
-#      - name: cat files
-#        run: cd /
+      - name: cat files
+        run: cd /home/runner/go/bin && ls
 
       - name: cat version
         run: buf --version
