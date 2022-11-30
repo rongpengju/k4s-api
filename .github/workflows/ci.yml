@@ -19,6 +19,7 @@ jobs:
           go-version: 1.18
 
       - name: Start install
+        user: appleboy/ssh-action@master
         with:
           script: |
             BIN="/usr/local/bin" && \
