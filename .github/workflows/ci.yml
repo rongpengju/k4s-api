@@ -35,15 +35,11 @@ jobs:
 
       - name: Setup env
         run: |
-          go env
+          echo $PATH
           export PATH=$PATH:$(go env GOPATH)/bin
-          cd /home/runner/go/bin
-          ls
-          go env
+          echo $PATH
           buf --version
-          go env
           protoc --version
-          go env
 
       - name: Start build
         run: make build
