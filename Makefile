@@ -9,10 +9,7 @@ build: clean lint generator
 
 .PHONY: install
 install:
-	  curl -sSL \
-		"https://github.com/bufbuild/buf/releases/download/${BUF_VERSION}/${BINARY_NAME}" \
-		-o "${BIN}/${BINARY_NAME}" && \
-	  chmod +x "${BIN}/${BINARY_NAME}"
+	  curl -sSL "https://github.com/bufbuild/buf/releases/download/${BUF_VERSION}/${BINARY_NAME}" -o "${BIN}/${BINARY_NAME}" && chmod +x "${BIN}/${BINARY_NAME}"
 
 .PHONY: lint
 lint:
