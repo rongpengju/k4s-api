@@ -5,13 +5,13 @@ package basic.v1;
 option go_package = "github.com/rongpengju/k4s-api/basic/v1";
 
 service HelloWorldService {
-    rpc SayHello (SayHelloRequest) returns (SayHelloResponse);
+  rpc SayHello (SayHelloRequest) returns (SayHelloResponse);
 }
 
 message SayHelloRequest {
-    string message = 1;
+  string name = 1;
 }
 
 message SayHelloResponse {
-    string message = 1;
+  string message = 1;
 }
