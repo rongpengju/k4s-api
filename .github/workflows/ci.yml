@@ -16,22 +16,11 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v1
         with:
-          go-version: 1.18
+          go-version: 1.19
 
       - name: Start install
-        uses: appleboy/ssh-action@master
-        with:
-          script: |
-            BIN="/usr/local/bin" && \
-            VERSION="1.8.0" && \
-            BINARY_NAME="buf" && \
-              curl -sSL \
-                "https://github.com/bufbuild/buf/releases/download/v${VERSION}/${BINARY_NAME}-$(uname -s)-$(uname -m)" \
-                -o "${BIN}/${BINARY_NAME}" && \
-              chmod +x "${BIN}/${BINARY_NAME}"
-#
-#        run: |
-#          make install
+        run: |
+          make install
 
       - name: cat version
         run: |
