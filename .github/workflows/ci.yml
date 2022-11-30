@@ -21,35 +21,29 @@ jobs:
       - name: Start install
         run: make install
 
-      - name: Setup buf env
+      - name: cat go env
         run: |
-          export GOBIN=$GOPATH/bin
           go env
-#          cd /home/runner/go/bin/
-#          ls
 #          mv /home/runner/go/bin/grpcurl /usr/local/bin/
-#          mv /home/runner/go/bin/protoc-gen-connect-go /usr/local/bin/
 #          mv /home/runner/go/bin/protoc-gen-go /usr/local/bin/
 #          mv /home/runner/go/bin/protoc-gen-go-grpc /usr/local/bin/
 #          mv /home/runner/go/bin/buf /usr/local/bin/
 #          chmod +x /usr/local/bin/grpcurl
-#          chmod +x /usr/local/bin/protoc-gen-connect-go
 #          chmod +x /usr/local/bin/protoc-gen-go
 #          chmod +x /usr/local/bin/protoc-gen-go-grpc
 #          chmod +x /usr/local/bin/buf
 
-      - name: cat sys env
+      - name: Setup env
         run: |
-          echo $PATH
           go env
-
-      - name: cat env
-        run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           cd /home/runner/go/bin
           ls
+          go env
           buf --version
+          go env
           protoc --version
+          go env
 
       - name: Start build
         run: make build
