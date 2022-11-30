@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package basic.v1;
 
-option go_package = "github.com/rongpengju/k4s-api/basic";
+option go_package = "github.com/rongpengju/k4s-api/basic/v1";
 
-service HelloWorld {
+service HelloWorldService {
     rpc SayHello (SayHelloRequest) returns (SayHelloResponse);
 }
 
