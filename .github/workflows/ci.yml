@@ -45,6 +45,7 @@ jobs:
 
       - name: cat env
         run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
           cd /home/runner/go/bin
           ls
           buf --version
