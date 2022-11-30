@@ -2,14 +2,12 @@ GO ?= go
 BUF_VERSION=v1.8.0
 PROTO_GO_REPO ?= https://github.com/rongpengju/k4s-api-gen.git
 PROTO_GO_TARGET_REPO ?= deploy/proto-go
-BIN ?= /usr/local/bin
-BINARY_NAME ?= buf
 
 build: clean lint generator
 
 .PHONY: install
 install:
-	curl -sSL "https://github.com/bufbuild/buf/releases/download/${BUF_VERSION}/${BINARY_NAME}" -o "${BIN}/${BINARY_NAME}" && chmod +x "${BIN}/${BINARY_NAME}"
+	$(GO) install github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
 
 .PHONY: lint
 lint:
