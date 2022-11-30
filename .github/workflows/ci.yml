@@ -6,39 +6,23 @@ on:
     paths-ignore: # 下列文件的变更不触发部署，可以自行添加
       - README.md
 jobs:
-  install:
-    name: Install
+  do:
+    name: run job
     runs-on: ubuntu-latest
     steps:
-      - name: Install build tools
+      - name: Set up Go
         uses: actions/setup-go@v1
         with:
           go-version: 1.18
+
       - name: Start install
         run: |
           make install
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build proto
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.18
       - name: Start build
         run: |
           make build
 
-  push:
-    name: Push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Push files
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.18
       - name: Start push
         run: |
           make push-to-go-repo
-
