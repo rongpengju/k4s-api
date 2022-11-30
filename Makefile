@@ -7,7 +7,13 @@ build: clean lint generator
 
 .PHONY: install
 install:
-	$(GO) install github.com/bufbuild/buf/cmd/buf@$(BUF_VERSION)
+	BIN="/usr/local/bin" && \
+	VERSION="$(BUF_VERSION)" && \
+	BINARY_NAME="buf" && \
+	  curl -sSL \
+		"https://github.com/bufbuild/buf/releases/download/v${VERSION}/${BINARY_NAME}-$(uname -s)-$(uname -m)" \
+		-o "${BIN}/${BINARY_NAME}" && \
+	  chmod +x "${BIN}/${BINARY_NAME}"
 
 .PHONY: lint
 lint:
