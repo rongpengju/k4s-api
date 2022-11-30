@@ -23,8 +23,7 @@ jobs:
 
       - name: Setup buf env
         run: |
-          echo "::set-env name=GOPATH::$(go env GOPATH)"
-          echo "::add-path::$(go env GOPATH)/bin"
+          echo "$(go env GOPATH)/bin" >> $PATH
         shell: bash
 #          cd /home/runner/go/bin/
 #          ls
