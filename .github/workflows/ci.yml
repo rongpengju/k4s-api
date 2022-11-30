@@ -21,6 +21,11 @@ jobs:
       - name: Start install
         run: make install
 
+      - name: cat version
+        run: |
+          protoc --version
+          buf --version
+
       - name: Start build
         run: make build
 
