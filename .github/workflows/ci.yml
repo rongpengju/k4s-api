@@ -36,6 +36,10 @@ jobs:
 #          chmod +x /usr/local/bin/protoc-gen-go
 #          chmod +x /usr/local/bin/protoc-gen-go-grpc
 #          chmod +x /usr/local/bin/buf
+      - name: cat sys env
+        run: |
+          echo $PATH
+          go env
 
 
       - name: cat env
