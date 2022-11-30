@@ -23,14 +23,15 @@ jobs:
 
       - name: Setup buf env
         run: |
-          mv /home/runner/go/bin/buf /usr/local/bin
-          chmod +x /usr/local/bin/buf
-          buf --version
+          cp -r /home/runner/go/bin/ /usr/local/bin/
+          chmod +x /usr/local/bin/
+
 
       - name: cat env
         run: |
           cd /home/runner/go/bin
           ls
+          buf --version
           protoc --version
 
       - name: Start build
