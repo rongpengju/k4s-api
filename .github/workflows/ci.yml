@@ -21,6 +21,12 @@ jobs:
       - name: Start install
         run: make install
 
+      - name: cat go env
+        run: go env
+
+#      - name: cat files
+#        run: cd /
+
       - name: cat version
         run: buf --version
 
