@@ -18,23 +18,17 @@ jobs:
         with:
           go-version: 1.19
 
-      - name: set go env
-        run: export GOBIN=$GOPATH/bin
-
       - name: Start install
         run: make install
 
-      - name: cat version
+      - name: Setup buf env
         run: |
+          mv /home/runner/go/bin/buf /usr/local/bin
+          chmod +x /usr/local/bin/buf
           buf --version
 
-#      - name: cat version
-#        run: |
-#          protoc --version
-#          buf --version
-#
-#      - name: Start build
-#        run: make build
+      - name: Start build
+        run: make build
 #
 #      - name: Start push
 #        run: make push-to-go-repo
