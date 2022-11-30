@@ -27,6 +27,12 @@ jobs:
           chmod +x /usr/local/bin/buf
           buf --version
 
+      - name: cat env
+        run: |
+          cd /home/runner/go/bin
+          ls
+          protoc --version
+
       - name: Start build
         run: make build
 
