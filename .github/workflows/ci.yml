@@ -23,7 +23,8 @@ jobs:
 
       - name: Setup buf env
         run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
+          export GOBIN=$GOPATH/bin
+          export PATH=$PATH:$(go env GOBIN)
 #          cd /home/runner/go/bin/
 #          ls
 #          mv /home/runner/go/bin/grpcurl /usr/local/bin/
