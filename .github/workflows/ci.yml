@@ -23,18 +23,19 @@ jobs:
 
       - name: Setup buf env
         run: |
-          cd /home/runner/go/bin/
-          ls
-          mv /home/runner/go/bin/grpcurl /usr/local/bin/
-          mv /home/runner/go/bin/protoc-gen-connect-go /usr/local/bin/
-          mv /home/runner/go/bin/protoc-gen-go /usr/local/bin/
-          mv /home/runner/go/bin/protoc-gen-go-grpc /usr/local/bin/
-          mv /home/runner/go/bin/buf /usr/local/bin/
-          chmod +x /usr/local/bin/grpcurl
-          chmod +x /usr/local/bin/protoc-gen-connect-go
-          chmod +x /usr/local/bin/protoc-gen-go
-          chmod +x /usr/local/bin/protoc-gen-go-grpc
-          chmod +x /usr/local/bin/buf
+          export PATH=$PATH:/home/runner/go/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
+#          cd /home/runner/go/bin/
+#          ls
+#          mv /home/runner/go/bin/grpcurl /usr/local/bin/
+#          mv /home/runner/go/bin/protoc-gen-connect-go /usr/local/bin/
+#          mv /home/runner/go/bin/protoc-gen-go /usr/local/bin/
+#          mv /home/runner/go/bin/protoc-gen-go-grpc /usr/local/bin/
+#          mv /home/runner/go/bin/buf /usr/local/bin/
+#          chmod +x /usr/local/bin/grpcurl
+#          chmod +x /usr/local/bin/protoc-gen-connect-go
+#          chmod +x /usr/local/bin/protoc-gen-go
+#          chmod +x /usr/local/bin/protoc-gen-go-grpc
+#          chmod +x /usr/local/bin/buf
 
 
       - name: cat env
