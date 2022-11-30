@@ -1,0 +1,41 @@
+name: Build And Push
+on:
+  push:
+    tags:
+      - 'test/*'
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install build tools
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.18
+        run:
+          make install
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build proto
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.18
+        run:
+          make build
+
+  push:
+    name: Push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push files
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.18
+        run:
+          make push-to-go-repo
+

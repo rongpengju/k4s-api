@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package basic.v1;
+
+option go_package = "github.com/rongpengju/k4s-api/basic";
+
+service HelloWorld {
+    rpc SayHello (SayHelloRequest) returns (SayHelloResponse);
+}
+
+message SayHelloRequest {
+    string message = 1;
+}
+
+message SayHelloResponse {
+    string message = 1;
+}

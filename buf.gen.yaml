@@ -1,0 +1,12 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/rongpengju/k4s-api-gen
+plugins:
+  - name: go
+    out: gen
+    opt: paths=source_relative
+  - name: grpc-go
+    out: gen
+    opt: paths=source_relative
