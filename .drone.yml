@@ -22,6 +22,8 @@ steps:
     image: golang:1.19
     pull: always
     commands:
+      - go env -w GO111MODULE=on
+      - go env -w GOPROXY=https://goproxy.cn,direct
       - make install
     volumes:
       - name: deps
