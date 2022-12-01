@@ -18,23 +18,23 @@ volumes:
     temp: {}
 
 steps:
-  - name: Install dependencies
-    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:2.0
-    pull: always
-    commands:
-      - make install
-    volumes:
-      - name: deps
-        path: /go
-
-#  - name: generator code
-#    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:2.0
+#  - name: Install dependencies
+#    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:3.0
 #    pull: always
 #    commands:
-#      - make build
+#      - make install
 #    volumes:
 #      - name: deps
 #        path: /go
+
+  - name: Generator code
+    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:3.0
+    pull: always
+    commands:
+      - make build
+    volumes:
+      - name: deps
+        path: /go
 
 #  - name: push code
 #    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:2.0
