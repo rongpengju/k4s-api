@@ -8,8 +8,10 @@ platform:
   arch: amd64
 
 trigger:
+  branch:
+    - master
   event:
-    - pull_request
+    - push
 
 volumes:
   - name: deps
