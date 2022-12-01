@@ -7,6 +7,6 @@ plugins:
   - name: go
     out: gen
     opt: paths=source_relative
-  - name: grpc-go
+  - name: go-grpc
     out: gen
     opt: paths=source_relative
