@@ -25,6 +25,9 @@ steps:
     pull: if-not-exists  # 如果在本地缓存中找不到图像，则仅拉取图像
     commands:
       - git clone https://github.com/rongpengju/k4s-api.git  #自定义克隆地址
+    volumes:
+      - name: deps
+        path: /go
 
   - name: Install Dependencies
     image: golang:1.19
