@@ -9,8 +9,6 @@ platform:
 
 trigger:
   event:
-    - push
-    - tag
     - pull_request
 
 volumes:
