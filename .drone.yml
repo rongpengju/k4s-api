@@ -18,7 +18,7 @@ volumes:
     temp: {}
 
 steps:
-  - name: install dependencies
+  - name: Install dependencies
     image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:2.0
     pull: always
     commands:
