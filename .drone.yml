@@ -42,7 +42,7 @@ steps:
     image: golang:1.19
     pull: always
     commands:
-      - sudo apt install apt-transport-https
+      - apt install apt-transport-https
       - make push-to-go-repo
     volumes:
       - name: deps
