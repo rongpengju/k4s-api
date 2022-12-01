@@ -18,7 +18,7 @@ volumes:
     temp: {}
 
 steps:
-  - name: install dependencies
+  - name: Install Dependencies
     image: golang:1.19
     pull: always
     commands:
@@ -29,7 +29,7 @@ steps:
       - name: deps
         path: /go
 
-  - name: generator code
+  - name: Generator Code
     image: golang:1.19
     pull: always
     commands:
@@ -38,11 +38,11 @@ steps:
       - name: deps
         path: /go
 
-#  - name: push code
-#    image: golang:1.19
-#    pull: always
-#    commands:
-#      - make push-to-go-repo
-#    volumes:
-#      - name: deps
-#        path: /go
+  - name: Push Code
+    image: golang:1.19
+    pull: always
+    commands:
+      - make push-to-go-repo
+    volumes:
+      - name: deps
+        path: /go
