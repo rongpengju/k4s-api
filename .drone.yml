@@ -19,7 +19,7 @@ volumes:
 
 steps:
   - name: install dependencies
-    image: golang:1.19
+    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:2.0
     pull: always
     commands:
       - make install
@@ -27,20 +27,20 @@ steps:
       - name: deps
         path: /go
 
-  - name: generator code
-    image: golang:1.19
-    pull: always
-    commands:
-      - make build
-    volumes:
-      - name: deps
-        path: /go
+#  - name: generator code
+#    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:2.0
+#    pull: always
+#    commands:
+#      - make build
+#    volumes:
+#      - name: deps
+#        path: /go
 
-  - name: push code
-    image: golang:1.19
-    pull: always
-    commands:
-      - make push-to-go-repo
-    volumes:
-      - name: deps
-        path: /go
+#  - name: push code
+#    image: registry.cn-hangzhou.aliyuncs.com/rongpengju-pulic-images/goprotoc:2.0
+#    pull: always
+#    commands:
+#      - make push-to-go-repo
+#    volumes:
+#      - name: deps
+#        path: /go
