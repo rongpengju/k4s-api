@@ -1,8 +1,8 @@
 name: Build And Push
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'deploy/*'
     paths-ignore:
       - README.md
 jobs:
