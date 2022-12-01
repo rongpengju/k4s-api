@@ -2,6 +2,8 @@
 kind: pipeline
 type: docker
 name: generator
+clone:
+  disable: true  #禁用默认克隆
 
 platform:
   os: linux
@@ -18,6 +20,12 @@ volumes:
     temp: {}
 
 steps:
+  - name: Clone
+    image: alpine/git
+    pull: if-not-exists  # 如果在本地缓存中找不到图像，则仅拉取图像
+    commands:
+      - git clone https://github.com/rongpengju/k4s-api.git  #自定义克隆地址
+
   - name: Install Dependencies
     image: golang:1.19
     pull: always
@@ -42,7 +50,6 @@ steps:
     image: golang:1.19
     pull: always
     commands:
-      - apt install apt-transport-https
       - go env -w GO111MODULE=on
       - go env -w GOPROXY=https://goproxy.cn,direct
       - make push-to-go-repo
