@@ -14,13 +14,22 @@ trigger:
     - push
 
 clone:
-  retries: 3
+  disable: true
+
+
+
 
 volumes:
   - name: deps
-    temp: { }
+    temp: {}
 
 steps:
+  - name: clone
+    image: alpine/git
+    commands:
+      - git clone https://github.com/rongpengju/k4s-api.git .
+      - git checkout $DRONE_COMMIT
+
   - name: Install Dependencies
     image: golang:1.19
     pull: always
