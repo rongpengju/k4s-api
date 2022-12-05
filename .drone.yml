@@ -18,7 +18,7 @@ clone:
 
 volumes:
   - name: deps
-    temp: {}
+    temp: { }
 
 steps:
   - name: Install Dependencies
@@ -47,6 +47,9 @@ steps:
     commands:
       - go env -w GO111MODULE=on
       - go env -w GOPROXY=https://goproxy.cn,direct
+      - apt-get install gnutls-bin
+      - git config --global http.sslVerify false
+      - git config --global http.postBuffer 1048576000
       - make push-to-go-repo
     volumes:
       - name: deps
