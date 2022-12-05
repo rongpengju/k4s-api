@@ -57,7 +57,6 @@ steps:
     commands:
       - go env -w GO111MODULE=on
       - go env -w GOPROXY=https://goproxy.cn,direct
-      - git config --global --unset http.https://github.com.proxy
       - make push-to-go-repo
     volumes:
       - name: deps
