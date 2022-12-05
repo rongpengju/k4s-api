@@ -37,7 +37,6 @@ push-to-go-repo:
 	cd $(PROTO_GO_TARGET_REPO) && $(GO) mod tidy
 	git config --global user.email "gophercoding@gmail.com"
 	git config --global user.name "rongpengju"
-	git config --global --unset http.https://github.com.proxy
 	(cd $(PROTO_GO_TARGET_REPO) && git add --all && git commit -m "[auto-commit] Generate codes" && git push -f -u origin master) || echo "not pushed"
 
 clean:
