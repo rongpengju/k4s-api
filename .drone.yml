@@ -13,6 +13,9 @@ trigger:
   event:
     - push
 
+clone:
+  retries: 3
+
 volumes:
   - name: deps
     temp: {}
