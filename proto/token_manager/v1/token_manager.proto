@@ -1,24 +1,24 @@
 syntax = "proto3";
 
-package token_manager;
+package token_manager.v1;
 
 option go_package = "github.com/rongpengju/k4s-api/token_manager/v1";
 
 service TokenManagerService {
   // 检测
-  rpc Ping(Req) returns (Resp) {}
+  rpc Ping(PingRequest) returns (PingResponse) {}
   // 查询广告计划学习期状态
-  rpc GetAdStatExtraInfo(GetAdStatExtraInfoReq) returns (GetAdStatExtraInfoResp) {}
+  rpc GetAdStatExtraInfo(GetAdStatExtraInfoRequest) returns (GetAdStatExtraInfoResponse) {}
   // 获取广告主
-  rpc FindAdvertiser(FindAdvertiserReq) returns (FindAdvertiserResp) {}
+  rpc FindAdvertiser(FindAdvertiserRequest) returns (FindAdvertiserResponse) {}
   // 根据广告主获取用户
-  rpc FindUser(FindUserReq) returns (FindUserResp) {}
+  rpc FindUser(FindUserRequest) returns (FindUserResponse) {}
   // 获取行业分类
-  rpc FindIndustryList(FindIndustryListReq) returns (FindIndustryListResp) {}
+  rpc FindIndustryList(FindIndustryListRequest) returns (FindIndustryListResponse) {}
   // 获取日流水
-  rpc QianchuanFinanceDetailGet(QianchuanFinanceDetailGetReq) returns (QianchuanFinanceDetailGetResp) {}
+  rpc QianchuanFinanceDetailGet(QianchuanFinanceDetailGetRequest) returns (QianchuanFinanceDetailGetResponse) {}
   // 获取素材id
-  rpc FindMaterial(FindMaterialReq) returns (FindMaterialResp) {}
+  rpc FindMaterial(FindMaterialRequest) returns (FindMaterialResponse) {}
 }
 
 message AdStatExtraList {
@@ -36,11 +36,11 @@ message PageInfo {
 //广告主
 message Advertiser {
   // 广告主账户id
-  int64 AdCustomerId = 1;
+  int64 ad_customer_id = 1;
   // 广告账户名
-  string AdCustomerName = 2;
+  string ad_customer_name = 2;
   // 公司名
-  string Company = 3;
+  string company = 3;
 }
 
 message Pagination {
@@ -93,12 +93,12 @@ message Material {
   string md5 = 3;
 }
 
-message Req {}
+message PingRequest {}
 
-message Resp {}
+message PingResponse {}
 
 // 查询广告计划学习期状态
-message GetAdStatExtraInfoReq {
+message GetAdStatExtraInfoRequest {
   // 开始时间(对比计划更新时间)
   string start_time = 1;
   // 结束时间(对比计划更新时间)
@@ -108,13 +108,13 @@ message GetAdStatExtraInfoReq {
   int32 page = 4;
 }
 
-message GetAdStatExtraInfoResp {
+message GetAdStatExtraInfoResponse {
   repeated AdStatExtraList list = 1;
   PageInfo page_info = 2;
 }
 
 // 获取广告主
-message FindAdvertiserReq {
+message FindAdvertiserRequest {
   //用户
   repeated int64 user_ids = 1;
   //媒体
@@ -135,13 +135,13 @@ message FindAdvertiserReq {
   int64 customer_id = 9;
 }
 
-message FindAdvertiserResp {
+message FindAdvertiserResponse {
   repeated Advertiser advertisers = 1;
   Pagination pagination_offset = 2;
 }
 
 // 根据广告主获取用户
-message FindUserReq {
+message FindUserRequest {
   repeated int64 ad_customer_id = 1;
   //媒体
   int64 plat_form = 2;
@@ -149,12 +149,12 @@ message FindUserReq {
   int64 topsign_id = 3;
 }
 
-message FindUserResp {
+message FindUserResponse {
   repeated int64 user_ids = 1;
 }
 
 // 获取行业分类
-message FindIndustryListReq {
+message FindIndustryListRequest {
   //只获取某级别数据，1:第一级,2:第二级,3:第三级，默认都返回
   int64 level = 1;
   //行业名称
@@ -167,12 +167,12 @@ message FindIndustryListReq {
   int64 pid = 5;
 }
 
-message FindIndustryListResp {
+message FindIndustryListResponse {
   repeated Industry list = 1;
 }
 
 // 获取日流水
-message QianchuanFinanceDetailGetReq {
+message QianchuanFinanceDetailGetRequest {
   //广告主
   repeated int64 advertiser_id = 1;
   //开始时间
@@ -185,12 +185,12 @@ message QianchuanFinanceDetailGetReq {
   int64 plat_form = 5;
 }
 
-message QianchuanFinanceDetailGetResp {
+message QianchuanFinanceDetailGetResponse {
   repeated FinanceDetail finance_list = 1;
 }
 
 // 获取素材id
-message FindMaterialReq {
+message FindMaterialRequest {
   //md5
   repeated string md5 = 1;
   //架构
@@ -199,6 +199,6 @@ message FindMaterialReq {
   int64 plat_form = 3;
 }
 
-message FindMaterialResp {
+message FindMaterialResponse {
   repeated Material material = 1;
 }
