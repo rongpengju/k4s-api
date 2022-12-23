@@ -27,8 +27,6 @@ steps:
   - name: clone
     image: alpine/git
     commands:
-      - git config --global http.version HTTP/1.1
-      - git config --global --unset http.proxy
       - git clone https://github.com/rongpengju/k4s-api.git .
       - git checkout $DRONE_COMMIT
 
