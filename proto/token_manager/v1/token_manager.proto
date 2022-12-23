@@ -1,0 +1,203 @@
+syntax = "proto3";
+
+package token_manager;
+
+option go_package = "github.com/rongpengju/k4s-api/token_manager/v1";
+
+service TokenManagerService {
+  //检测
+  rpc Ping(Req) returns (Resp) {}
+  //查询广告计划学习期状态
+  rpc GetAdStatExtraInfo(AdStatExtraInfo) returns (AdStatExtraData) {}
+  //获取广告主
+  rpc FindAdvertiser(AdvertiserParam) returns (AdvertiserResp) {}
+  //根据广告主获取用户
+  rpc FindUser(UserParam) returns (UserIds) {}
+  //获取行业分类
+  rpc FindIndustryList(IndustryReq) returns (IndustryList) {}
+  //获取日流水
+  rpc QianchuanFinanceDetailGet(FinanceDetailParam) returns (FinanceList) {}
+  //获取素材id
+  rpc FindMaterial(MaterialParam) returns (MaterialList) {}
+}
+
+message Req {}
+
+message Resp {}
+
+// 查询广告计划学习期状态
+message AdStatExtraInfo {
+  // 开始时间(对比计划更新时间)
+  string StartTime = 1;
+  // 结束时间(对比计划更新时间)
+  string EndTime = 2;
+  // 要查询的账户
+  repeated int64 AdvertiserIds = 3;
+  int32 Page = 4;
+}
+
+message AdStatExtraList {
+  int64 AdvertiserId = 1;
+  // 该账户下在查询时间内学习成功的计划数
+  int32 LearnedCount = 2;
+}
+
+message PageInfo {
+  int32 Limit = 1;
+  int32 Page = 2;
+  int32 TotalCount = 3;
+}
+
+message AdStatExtraData {
+  repeated AdStatExtraList List = 1;
+  PageInfo PageInfo = 2;
+}
+
+message AdvertiserParam {
+  //用户
+  repeated int64 UserIds = 1;
+  //媒体
+  int64 PlatFrom = 2;
+  //资质名称
+  repeated string Company = 3;
+  //品牌id
+  int64 ClientId = 8;
+  //资质id
+  int64 CustomerId = 9;
+  //架构
+  int64 TopsignId = 4;
+  //分页
+  int32 Page = 5;
+  //数量
+  int32 Limit = 6;
+  //广告主名称
+  string Name = 7;
+}
+
+message UserParam {
+  repeated int64 AdCustomerId = 1;
+  //媒体
+  int64 PlatFrom = 2;
+  //架构
+  int64 TopsignId = 3;
+}
+
+message UserIds {
+  repeated int64 UserIds = 1;
+}
+
+message Pagination {
+  int32 Limit = 1;
+  int32 Page = 2;
+  int64 TotalCount = 3;
+}
+
+message AdvertiserResp {
+  repeated Advertiser Advertisers = 1;
+  Pagination PaginationOffset = 2;
+}
+
+//广告主
+message Advertiser {
+  // 广告主账户id
+  int64 AdCustomerId = 1;
+  // 广告账户名
+  string AdCustomerName = 2;
+  // 公司名
+  string Company = 3;
+}
+
+//行业
+message Industry {
+  //行业ID
+  int64 IndustryId = 1;
+  //行业名称
+  string IndustryName = 2;
+  //所在级别，1：一级行业、2：二级行业、3：三级行业
+  int64 Level = 3;
+  //该行业的一级行业ID
+  int64 FirstIndustryId = 4;
+  //该行业的一级行业名称
+  string FirstIndustryName = 5;
+  //该行业的二级行业ID
+  int64 SecondIndustryId = 6;
+  //该行业的二级行业名称
+  string SecondIndustryName = 7;
+  //该行业的三级行业ID
+  int64 ThirdIndustryId = 8;
+  //该行业的三级行业名称
+  string ThirdIndustryName = 9;
+  //父id
+  int64 Pid = 10;
+}
+
+//行业列表
+message IndustryList {
+  repeated Industry List = 1;
+}
+
+message IndustryReq {
+  //只获取某级别数据，1:第一级,2:第二级,3:第三级，默认都返回
+  int64 Level = 1;
+  //行业名称
+  string IndustryName = 2;
+  //行业id
+  int64 IndustryId = 3;
+  //媒体
+  int64 PlatForm = 4;
+  //父级
+  int64 Pid = 5;
+}
+
+//日流水入参
+message FinanceDetailParam {
+  //广告主
+  repeated int64 AdvertiserId = 1;
+  //开始时间
+  string StartTime = 2;
+  //结束时间
+  string EndTime = 3;
+  //架构
+  int64 TopsignId = 4;
+  //媒体
+  int64 PlatForm = 5;
+}
+
+//日流水
+message FinanceDetail {
+  //现金支出(单位元)
+  float CashCost = 1;
+  //总支出(单位元)
+  float Cost = 2;
+  //赠款支出(单位元)
+  float RewardCost = 3;
+  //共享钱包支出
+  float SharedWalletCost = 4;
+  //广告主
+  int64 AdvertiserId = 5;
+}
+
+//日流水出参
+message FinanceList {
+  repeated FinanceDetail FinanceList = 1;
+}
+
+//查询素材id
+message MaterialParam {
+  //md5
+  repeated string Md5 = 1;
+  //架构
+  int64 TopsignId = 2;
+  //媒体
+  int64 Platform = 3;
+}
+
+message Material {
+  int64 MaterialId = 1;
+  int64 AdvertiserId = 2;
+  string Md5 = 3;
+}
+
+message MaterialList {
+  repeated Material Material = 1;
+}
